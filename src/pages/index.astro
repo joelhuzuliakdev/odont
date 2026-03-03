@@ -87,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
 
 	<!-- ═══════════════ SERVICIOS ═══════════════ -->
 	<section id="servicios">
-		<div style="max-width:1200px;margin:0 auto;padding:4rem 2rem;">
+		<div style="max-width:1200px;margin:0 auto;padding:4rem 2rem;overflow:hidden;">
 			<div style="text-align:center;margin-bottom:3rem;">
 				<div class="section-label reveal" style="justify-content:center;color:var(--sage-lt);">
 					<span style="background:var(--sage-lt);"></span>Lo que ofrecemos
@@ -847,8 +847,9 @@ import Layout from '../layouts/Layout.astro';
 	/* ─── SERVICES (band before nosotros) ─── */
 	#servicios {
 		background: var(--charcoal);
+		overflow: hidden;
 	}
-		.services-grid {
+	.services-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1px;
@@ -1374,6 +1375,9 @@ import Layout from '../layouts/Layout.astro';
 		.review-card:nth-child(even) { margin-top: 0; }
 		.footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
 		.team-grid { grid-template-columns: 1fr 1fr; }
+		.services-grid {
+    		grid-template-columns: repeat(2, 1fr);
+		}
 	}
 	@media (max-width: 600px) {
 		.section-inner { padding: 4rem 1.5rem; }
@@ -1384,6 +1388,9 @@ import Layout from '../layouts/Layout.astro';
 		.form-row { grid-template-columns: 1fr; }
 		.team-grid { grid-template-columns: 1fr; }
 		.about-values { grid-template-columns: 1fr; }
+		.services-grid {
+    		grid-template-columns: 1fr;
+		}
 	}
 
 	/* Mobile menu */
