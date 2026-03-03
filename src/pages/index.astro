@@ -420,8 +420,8 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 				<div class="form-row">
 					<div class="form-group">
-							<label>Teléfono</label>
-					<input type="tel" placeholder="+54 351 ..." />
+						<label>Teléfono</label>
+						<input type="tel" placeholder="+54 351 ..." />
 					</div>
 					<div class="form-group">
 						<label>Email</label>
@@ -573,7 +573,7 @@ import Layout from '../layouts/Layout.astro';
 		transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
 		background: rgba(247, 244, 239, 0.15);
 		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px); /* Safari */
+		-webkit-backdrop-filter: blur(12px);
 	}
 	nav.scrolled {
 		background: rgba(247,244,239,0.96);
@@ -799,13 +799,6 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.hero-card-text span { font-size: 0.78rem; color: var(--warm-gray); }
 
-	/* Decorative circle */
-	.deco-circle {
-		position: absolute;
-		border-radius: 50%;
-		pointer-events: none;
-	}
-
 	/* ─── SECTION COMMONS ─── */
 	section { position: relative; }
 	.section-inner {
@@ -844,7 +837,7 @@ import Layout from '../layouts/Layout.astro';
 		line-height: 1.75;
 	}
 
-	/* ─── SERVICES (band before nosotros) ─── */
+	/* ─── SERVICES ─── */
 	#servicios {
 		background: var(--charcoal);
 		overflow: hidden;
@@ -1326,7 +1319,7 @@ import Layout from '../layouts/Layout.astro';
 		animation: none;
 	}
 	.wa-btn svg { width: 28px; height: 28px; fill: white; }
-		@keyframes waPulse {
+	@keyframes waPulse {
 		0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.45); }
 		50%       { box-shadow: 0 8px 40px rgba(37,211,102,0.75), 0 0 0 10px rgba(37,211,102,0.12); }
 	}
@@ -1357,48 +1350,130 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.wa-btn:hover .wa-tooltip { opacity: 1; }
 
-	/* ─── RESPONSIVE ─── */
+	/* ═══════════════════════════════════════
+	   RESPONSIVE — TABLET (≤ 1024px)
+	═══════════════════════════════════════ */
 	@media (max-width: 1024px) {
+		/* Nav */
 		nav { padding: 1.25rem 2rem; }
 		nav.scrolled { padding: 0.9rem 2rem; }
 		.nav-links { display: none; }
 		.hamburger { display: flex; }
-		#inicio { grid-template-columns: 1fr; }
-		.hero-right { display: none; }
-		.hero-left { padding: 6rem 2rem 3rem; }
+
+		/* Hero: imagen como fondo, texto encima */
+		#inicio {
+			grid-template-columns: 1fr;
+			min-height: 100vh;
+			position: relative;
+		}
+		.hero-right {
+			display: block;
+			position: absolute;
+			inset: 0;
+			z-index: 0;
+		}
+		.hero-image-wrap::after {
+			background: linear-gradient(
+				to right,
+				rgba(247, 244, 239, 0.95) 0%,
+				rgba(247, 244, 239, 0.80) 50%,
+				rgba(247, 244, 239, 0.40) 100%
+			);
+		}
+		/* Ocultar la floating card en mobile para no molestar */
+		.hero-card { display: none; }
+		.hero-left {
+			padding: 6rem 2rem 3rem;
+			position: relative;
+			z-index: 1;
+			min-height: 100vh;
+		}
+
+		/* Nosotros */
 		#nosotros .section-inner { grid-template-columns: 1fr; gap: 3rem; }
 		.about-images { height: 360px; }
+
+		/* Contacto */
 		#contacto .section-inner { grid-template-columns: 1fr; gap: 3rem; }
-		#resenas .section-inner { grid-template-columns: 1fr; }
+
+		/* Reseñas */
+		#resenas .section-inner { grid-template-columns: 1fr; gap: 2rem; }
 		.reviews-left { position: static; }
-		.reviews-grid { grid-template-columns: 1fr; }
+		.reviews-grid { grid-template-columns: 1fr 1fr; }
 		.review-card:nth-child(even) { margin-top: 0; }
+
+		/* Footer */
 		.footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+		/* Equipo */
 		.team-grid { grid-template-columns: 1fr 1fr; }
-		.services-grid {
-    		grid-template-columns: repeat(2, 1fr);
-		}
-	}
-	@media (max-width: 600px) {
-		.section-inner { padding: 4rem 1.5rem; }
-		.hero-h1 { font-size: 2.5rem; }
-		.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-		.gallery-item:first-child, .gallery-item:nth-child(4) { grid-column: auto; grid-row: auto; }
-		.footer-top { grid-template-columns: 1fr; }
-		.form-row { grid-template-columns: 1fr; }
-		.team-grid { grid-template-columns: 1fr; }
-		.about-values { grid-template-columns: 1fr; }
-		.services-grid {
-    		grid-template-columns: 1fr;
-		}
+
+		/* Servicios */
+		.services-grid { grid-template-columns: repeat(2, 1fr); }
 	}
 
-	/* Mobile menu */
+	/* ═══════════════════════════════════════
+	   RESPONSIVE — MOBILE (≤ 600px)
+	═══════════════════════════════════════ */
+	@media (max-width: 600px) {
+		.section-inner { padding: 4rem 1.5rem; }
+
+		/* Hero */
+		.hero-h1 { font-size: 2.5rem; }
+		.hero-image-wrap::after {
+			background: linear-gradient(
+				to bottom,
+				rgba(247, 244, 239, 0.92) 0%,
+				rgba(247, 244, 239, 0.75) 70%,
+				rgba(247, 244, 239, 0.50) 100%
+			);
+		}
+		.hero-stats { gap: 1.5rem; }
+
+		/* Galería: 1 columna, altura fija */
+		.gallery-grid {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto;
+		}
+		.gallery-item {
+			height: 220px;
+		}
+		.gallery-item:first-child,
+		.gallery-item:nth-child(4) {
+			grid-column: auto;
+			grid-row: auto;
+		}
+
+		/* Reseñas: 1 columna */
+		#resenas .section-inner { grid-template-columns: 1fr; }
+		.reviews-grid { grid-template-columns: 1fr; }
+		.review-card:nth-child(even) { margin-top: 0; }
+
+		/* Footer */
+		.footer-top { grid-template-columns: 1fr; }
+
+		/* Formulario */
+		.form-row { grid-template-columns: 1fr; }
+
+		/* Equipo */
+		.team-grid { grid-template-columns: 1fr; }
+
+		/* Nosotros */
+		.about-values { grid-template-columns: 1fr; }
+		.about-images { height: 300px; }
+		.about-badge-cert { right: 0; }
+
+		/* Servicios */
+		.services-grid { grid-template-columns: 1fr; }
+	}
+
+	/* ─── Mobile menu ─── */
 	.mobile-menu {
 		display: none;
 		position: fixed;
 		inset: 0;
-		z-index: 99;
+		/* z-index mayor al navbar (100) para que tape todo */
+		z-index: 200;
 		background: rgba(247,244,239,0.98);
 		backdrop-filter: blur(10px);
 		flex-direction: column;
@@ -1424,79 +1499,86 @@ import Layout from '../layouts/Layout.astro';
 		border: none;
 		cursor: pointer;
 		color: var(--charcoal);
+		/* z-index mayor al propio menú */
+		z-index: 201;
 	}
 </style>
 
 <!-- ═══════════════ JS ═══════════════ -->
 <script>
-	// ── Navbar scroll ──
-	const nav = document.getElementById('navbar');
-	window.addEventListener('scroll', () => {
-		nav.classList.toggle('scrolled', window.scrollY > 40);
-	});
-
-	// ── Mobile menu ──
-	document.getElementById('hamburger').addEventListener('click', () => {
-		document.getElementById('mobileMenu').classList.add('open');
-	});
-	document.getElementById('menuClose').addEventListener('click', () => {
-		document.getElementById('mobileMenu').classList.remove('open');
-	});
-	document.querySelectorAll('.mobile-nav-link').forEach(link => {
-		link.addEventListener('click', () => {
-		document.getElementById('mobileMenu').classList.remove('open');
+	document.addEventListener('DOMContentLoaded', () => {
+		// ── Navbar scroll ──
+		const nav = document.getElementById('navbar');
+		window.addEventListener('scroll', () => {
+			nav.classList.toggle('scrolled', window.scrollY > 40);
 		});
-	});
 
-	// ── Scroll reveal ──
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach(entry => {
-		if (entry.isIntersecting) {
-			entry.target.classList.add('visible');
-			// Animate rating bars when visible
-			if (entry.target.classList.contains('rating-bars')) {
-			setTimeout(() => {
-				document.querySelectorAll('.rating-bar-fill').forEach(bar => {
-				bar.style.width = bar.dataset.width + '%';
-				});
-			}, 300);
+		// ── Mobile menu ──
+		const hamburger = document.getElementById('hamburger');
+		const mobileMenu = document.getElementById('mobileMenu');
+		const menuClose  = document.getElementById('menuClose');
+
+		hamburger.addEventListener('click', () => {
+			mobileMenu.classList.add('open');
+		});
+		menuClose.addEventListener('click', () => {
+			mobileMenu.classList.remove('open');
+		});
+		document.querySelectorAll('.mobile-nav-link').forEach(link => {
+			link.addEventListener('click', () => {
+				mobileMenu.classList.remove('open');
+			});
+		});
+
+		// ── Scroll reveal ──
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					if (entry.target.classList.contains('rating-bars')) {
+						setTimeout(() => {
+							document.querySelectorAll('.rating-bar-fill').forEach(bar => {
+								bar.style.width = bar.dataset.width + '%';
+							});
+						}, 300);
+					}
+				}
+			});
+		}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+		document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+		const ratingsEl = document.querySelector('.rating-bars');
+		if (ratingsEl) observer.observe(ratingsEl);
+
+		// ── Trigger hero reveals immediately ──
+		setTimeout(() => {
+			document.querySelectorAll('#inicio .reveal').forEach(el => {
+				el.classList.add('visible');
+			});
+		}, 100);
+
+		// ── Parallax subtle on hero (solo desktop) ──
+		window.addEventListener('scroll', () => {
+			if (window.innerWidth > 1024) {
+				const heroImg = document.querySelector('.hero-img');
+				if (heroImg) {
+					heroImg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+				}
 			}
-		}
 		});
-	}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-	document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-	// Also observe rating bars parent
-	const ratingsEl = document.querySelector('.rating-bars');
-	if (ratingsEl) observer.observe(ratingsEl);
-
-	// ── Trigger hero reveals immediately ──
-	setTimeout(() => {
-		document.querySelectorAll('#inicio .reveal').forEach(el => {
-		el.classList.add('visible');
-		});
-	}, 100);
+	});
 
 	// ── Form submit ──
-	function handleSubmit(btn) {
+	window.handleSubmit = function(btn) {
 		const span = btn.querySelector('span');
 		span.textContent = '✓ Enviado con éxito';
 		btn.style.background = 'var(--sage-dk)';
 		btn.disabled = true;
 		setTimeout(() => {
-		span.textContent = 'Enviar Solicitud';
-		btn.style.background = '';
-		btn.disabled = false;
+			span.textContent = 'Enviar Solicitud';
+			btn.style.background = '';
+			btn.disabled = false;
 		}, 3000);
 	}
-
-	// ── Parallax subtle on hero ──
-	window.addEventListener('scroll', () => {
-		const heroImg = document.querySelector('.hero-img');
-		if (heroImg) {
-		const scrolled = window.scrollY;
-		heroImg.style.transform = `translateY(${scrolled * 0.25}px)`;
-		}
-	});
 </script>
