@@ -2,10 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title='Clínica Dental Córdoba | Implantes · Ortodoncia · Blanqueamiento' description="Clínica odontológica en Córdoba con más de 15 años de experiencia. Implantes, blanqueamiento, ortodoncia invisible y más. ¡Primera consulta gratis!">
+<Layout 
+title="ODONT | Clínica Odontológica en Córdoba · Implantes · Ortodoncia · Blanqueamiento" description="ODONT es una clínica odontológica en Córdoba con más de 15 años de experiencia. Implantes, blanqueamiento, ortodoncia invisible y más. ¡Primera consulta gratis!">	
 	<!-- ═══════════════ NAV ═══════════════ -->
 	<nav id="navbar">
-		<a href="#inicio" class="nav-logo">Dental<span>Pure</span></a>
+		<a href="#inicio" class="nav-logo">
+			<img src="logoOdontologia.webp" alt="Logo de la odontología">
+		</a>
 		<ul class="nav-links">
 			<li><a href="#servicios">Servicios</a></li>
 			<li><a href="#nosotros">Nosotros</a></li>
@@ -381,14 +384,14 @@ import Layout from '../layouts/Layout.astro';
 					<div class="contact-icon">📍</div>
 					<div>
 						<strong>Dirección</strong>
-						<span>Av. Rafael Núñez 4521, Cerro de las Rosas<br>Córdoba, Argentina</span>
+						<span>Av. Rafael Núñez 4521, Rio Ceballos<br>Córdoba, Argentina</span>
 					</div>
 				</div>
 				<div class="contact-detail reveal reveal-delay-3">
 					<div class="contact-icon">📞</div>
 					<div>
 						<strong>Teléfono</strong>
-						<span>+54 351 234-5678</span>
+						<span>+54 3543 57-7415</span>
 					</div>
 				</div>
 				<div class="contact-detail reveal reveal-delay-4">
@@ -459,7 +462,9 @@ import Layout from '../layouts/Layout.astro';
 		<div class="footer-inner">
 			<div class="footer-top">
 				<div class="footer-brand">
-					<a href="#inicio" class="nav-logo">Dental<span style="color:var(--sage-lt)">Pure</span></a>
+					<a href="#inicio" class="nav-logo">
+						<img src="logoOdontologia.webp" alt="Logo de la odontología">
+					</a>
 					<p>Transformamos sonrisas con excelencia clínica y calidez humana desde 2009 en Córdoba, Argentina.</p>
 					<div class="footer-socials">
 						<div class="footer-social">f</div>
@@ -591,7 +596,16 @@ import Layout from '../layouts/Layout.astro';
 		align-items: center;
 		gap: 0.5rem;
 	}
-	.nav-logo span { color: var(--sage); }
+	.nav-logo img {
+		height: 64px; 
+		width: auto;
+		object-fit: contain;
+		display: block;
+		transition: height 0.4s;
+	}
+	nav.scrolled .nav-logo img {
+		height: 48px;
+	}
 	.nav-links {
 		display: flex;
 		gap: 2.5rem;
@@ -1376,6 +1390,7 @@ import Layout from '../layouts/Layout.astro';
 	@media (max-width: 1024px) {
 		/* Nav */
 		nav { padding: 1.25rem 2rem; }
+		.nav-logo img { height: 48px; }
 		nav.scrolled { padding: 0.9rem 2rem; }
 		.nav-links { display: none; }
 		.hamburger { display: flex; }
